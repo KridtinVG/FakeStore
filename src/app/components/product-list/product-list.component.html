@@ -1,0 +1,11 @@
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+  <div
+    *ngFor="let product of products"
+    class="border p-4 rounded shadow"
+    (click)="ShowID(product.id)"
+  >
+    <img [src]="product.image" alt="{{ product.title }}" class="h-40 mx-auto" />
+    <h2 class="font-bold mt-2">{{ product.title }}</h2>
+    <p class="text-blue-600">${{ product.price }}</p>
+  </div>
+</div>
