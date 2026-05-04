@@ -1,0 +1,10 @@
+.block-item {
+  display: grid;
+  justify-items: center;
+  width: 33%;
+  height: 300px;
+}
+.img-item {
+  width: fit-content;
+  height: 100px;
+}
