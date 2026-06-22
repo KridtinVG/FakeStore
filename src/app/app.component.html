@@ -1,8 +1,31 @@
 <div class="">
-  <div class="banner">
-    <h1 class="text-2xl font-bold">Product Store</h1>
+  <div class="banner flex items-center justify-between">
+    <h1 class="text-2xl font-bold" routerLink="/">Product Store</h1>
+
+    <div class="flex items-center gap-3">
+      <ng-container *ngIf="isLoggedIn; else loginButton">
+        <span class="text-white font-semibold">Hello, {{ username }}</span>
+        <button
+          (click)="logout()"
+          class="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-5 py-2 rounded-xl shadow-sm transition-all"
+        >
+          Logout
+        </button>
+      </ng-container>
+
+      <ng-template #loginButton>
+        <button
+          type="button"
+          routerLink="/login"
+          class="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-5 py-2 rounded-xl shadow-sm transition-all"
+        >
+          เข้าสู่ระบบ
+        </button>
+      </ng-template>
+    </div>
   </div>
-  <app-product-list></app-product-list>
+
+  <router-outlet></router-outlet>
   <span class="text-sm text-gray-500"
     >© 2024 Product Store. All rights reserved.</span
   >
