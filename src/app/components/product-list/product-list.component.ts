@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from 'src/app/models/product.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +11,12 @@ import { IProduct } from 'src/app/models/product.interface';
 export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
   selectedProducts: (IProduct & { quantity: number })[] = [];
+  toggleMobileCart = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.loadSelectedProducts();
@@ -68,6 +73,26 @@ export class ProductListComponent implements OnInit {
 
     item.quantity = Math.max(1, item.quantity + delta);
     this.saveSelectedProducts();
+  }
+
+  proceedToCheckout(): void {
+    const username = localStorage.getItem('username');
+    const savedData = localStorage.getItem('userData');
+    if (!username) {
+      alert('กรุณาเข้าสู่ระบบ');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const order = {
+      username,
+      shipping: JSON.parse(savedData || '{}'),
+      items: this.selectedProducts,
+      total: this.getTotalPrice(),
+    };
+
+    localStorage.setItem('currentOrder', JSON.stringify(order));
+    this.router.navigate(['/order-summary']);
   }
 
   getTotalPrice(): number {

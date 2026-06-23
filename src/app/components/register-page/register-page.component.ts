@@ -41,6 +41,10 @@ export class RegisterPageComponent implements OnInit {
         })
         .subscribe({
           next: (response: any) => {
+            const shipping = { fullName, address, phone, email };
+            try {
+              localStorage.setItem('shipping', JSON.stringify(shipping));
+            } catch {}
             alert('สมัครสมาชิกสำเร็จ! ข้อมูลถูกบันทึกไปที่หลังบ้านเรียบร้อย');
             this.registerForm.reset();
           },

@@ -1,1 +1,40 @@
-<p>order-summary works!</p>
+<div class="max-w-3xl mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">สรุปคำสั่งซื้อ</h2>
+
+  <div *ngIf="order">
+    <div class="mb-4 border rounded p-4 bg-gray-50">
+      <h3 class="font-semibold">ข้อมูลผู้สั่ง</h3>
+      <div class="text-sm text-gray-700">ชื่อ: {{ order.username }}</div>
+      <div *ngIf="order.shipping" class="text-sm text-gray-700">
+        ชื่อ-นามสกุล: {{ order.shipping.fullName }}
+      </div>
+      <div *ngIf="order.shipping" class="text-sm text-gray-700">
+        ที่อยู่: {{ order.shipping.address }}
+      </div>
+      <div *ngIf="order.shipping" class="text-sm text-gray-700">
+        โทร: {{ order.shipping.phone }}
+      </div>
+      <div *ngIf="order.shipping" class="text-sm text-gray-700">
+        อีเมล: {{ order.shipping.email }}
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="font-semibold mb-2">รายการสินค้า</h3>
+      <div
+        *ngFor="let it of items"
+        class="flex justify-between items-center border-b py-2"
+      >
+        <div class="truncate max-w-lg">{{ it.title }}</div>
+        <div class="text-sm text-gray-700">
+          {{ it.quantity }} × ${{ it.price }}
+        </div>
+        <div class="font-semibold">${{ it.price * it.quantity }}</div>
+      </div>
+      <div class="flex justify-between font-bold mt-4">
+        <div>รวมทั้งหมด</div>
+        <div>${{ total }}</div>
+      </div>
+    </div>
+  </div>
+</div>

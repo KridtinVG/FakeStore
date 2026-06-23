@@ -28,7 +28,17 @@ export class LoginPageComponent implements OnInit {
       this.loginForm.value.username === 'admin' &&
       this.loginForm.value.password === 'Admin123'
     ) {
-      localStorage.setItem('username', 'admin');
+      const currentUser = {
+        username: 'admin',
+        shipping: {
+          fullName: 'Admin User',
+          address: 'Night city, arasaka tower,2077',
+          phone: '0123456789',
+          email: 'admin@example.com',
+        },
+      };
+      localStorage.setItem('username', currentUser.username);
+      localStorage.setItem('userData', JSON.stringify(currentUser.shipping));
       alert('เข้าสู่ระบบสำเร็จ! ยินดีต้อนรับ admin');
       this.loginForm.reset();
       this.router.navigate(['/']);
