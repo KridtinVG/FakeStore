@@ -1,5 +1,3 @@
-# FakeStore web show : (https://fake-store-one-henna.vercel.app/)
-
 # 🛍️ FakeStore E-Commerce Web Application
 
 เว็บแอปพลิเคชันจำลองร้านค้าออนไลน์ (E-Commerce) ที่พัฒนาด้วย **Angular 13** และ **Tailwind CSS** โดยมุ่งเน้นไปที่การสร้างประสบการณ์ใช้งานของผู้ใช้ที่ลื่นไหล (User Experience) และการวางโครงสร้างโค้ดหน้าบ้านที่รองรับการขยายตัวในอนาคต
